@@ -9,7 +9,6 @@ Rito_api =  os.getenv("RitoDevAPI")
 if Rito_api is None:
     print("error loading")
 
-
 # #Account detail 
 # gameName = input("Summoners name : ")
 # gameTag = input("#tag : ")
