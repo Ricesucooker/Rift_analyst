@@ -1,4 +1,4 @@
-import os 
+import os
 import time
 from dotenv import load_dotenv
 from urllib.parse import quote
@@ -73,10 +73,23 @@ if cachedPUUID !='Account not found':
             print("Type not listed, try again")
     
     gameHistory = getQueue_matchID(cachedPUUID, chosenQueue_id)
-    gameID_list = gameHistory[0]
+    gameID_list = gameHistory
 
-    print(getGameinfo_fromMatch(gameID_list))
+    # print(getGameinfo_fromMatch(gameID_list))
+    
+    rawMatch_data = []
+    for matchID in gameHistory[:3]:
+        data = getGameinfo_fromMatch(matchID)
+        if  isinstance(data, dict):
+            rawMatch_data.append(data)
+            print(f"Found match ID: {matchID} saved")
+            time.sleep(1.5)
+        else:
+            print(f"Error finding game info from match id {matchID} : {data}")
+            time.sleep(1.2)
+
 
 else:
     print("Stoppping script because user was not found.")
+
 
