@@ -3,7 +3,7 @@ import time
 from dotenv import load_dotenv
 from urllib.parse import quote
 import requests
-
+import json
 
 load_dotenv()
 Rito_api =  os.getenv("RitoDevAPI")
@@ -78,6 +78,7 @@ if cachedPUUID !='Account not found':
     # print(getGameinfo_fromMatch(gameID_list))
     
     rawMatch_data = []
+
     for matchID in gameHistory[:3]:
         data = getGameinfo_fromMatch(matchID)
         if  isinstance(data, dict):
@@ -88,6 +89,17 @@ if cachedPUUID !='Account not found':
             print(f"Error finding game info from match id {matchID} : {data}")
             time.sleep(1.2)
 
+    for gameParticipated in rawMatch_data:
+        participantList = gameParticipated["info"]["participants"]
+
+        for player in participantList:
+            if player["puuid"] == cachedPUUID:
+                print(f"User : {gameName},\nChampion : {player['championName']}")
+                if player["win"] is True:
+                    print(f"Game Won with KDA:{player['kills']}/{player['deaths']}/{player['assists']} \nTotal Damage: {player['totalDamageDealt']} \nDamage to Champions:{player['totalDamageDealtToChampions']}")
+                else:
+                    print(f"Game Loss with KDA:{player['kills']}/{player['deaths']}/{player['assists']} \nTotal Damage: {player['totalDamageDealt']} \nDamaage to Champions:{player['totalDamageDealtToChampions']}")
+                break
 
 else:
     print("Stoppping script because user was not found.")

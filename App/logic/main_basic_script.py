@@ -43,7 +43,7 @@ while True:
 
 # below no longer needed but can uncomment for testing  as PUUID dont change
 # session_userPUUID = "ZYWPgJTPG4vG_LhHnqmPqKVUY49kBJxZ5xEF8v32ZL0XQwNlpVY4_bQpY6UTeBUtgCTR-yl5xwwO1Q"
-getRankMatchid = f"https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/{session_userPUUID}/ids?start=&queue={chosenQueue_id}&count=20&api_key={Rito_api}"
+getRankMatchid = f"https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/{session_userPUUID}/ids?start=0&queue={chosenQueue_id}&count=20&api_key={Rito_api}"
 gamesIDs = requests.get(getRankMatchid)
 
 gamesIDHistory = []
