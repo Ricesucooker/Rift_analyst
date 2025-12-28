@@ -24,3 +24,9 @@ for player in matchJSON["info"]["participants"]:
         else:
             print("Game loss")
         break
+
+
+ritogameTypep = [1,2,3,4]
+
+uri1 = f'https://{region}.api.riotgames.com/{ritogameType}/match/{apiVersion}/matches/{matchID}?api_key={Rito_api}'
+
