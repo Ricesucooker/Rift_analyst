@@ -60,6 +60,19 @@ if cachedPUUID !='Account not found':
 
         for player in participantList:
             if player["puuid"] == cachedPUUID:
+                match_id = gameParticipated["metadata"]["matchId"]
+                match_blob = json.dumps(gameParticipated)
+                add_match(
+                    match_id,
+                    gameName,
+                    player['championName'],
+                    player['kills'],
+                    player['deaths'],
+                    player['assists'],
+                    player['win'],
+                    player['totalDamageDealt'],
+                    match_blob)
+                print(f" debug: MatchID type: {type({match_id})}, match blob tye:{type(match_blob)}" )
                 print(f"User : {gameName},\nChampion : {player['championName']}")
                 if player["win"] is True:
                     print(f"Game Won with KDA:{player['kills']}/{player['deaths']}/{player['assists']} \nTotal Damage: {player['totalDamageDealt']} \nDamage to Champions:{player['totalDamageDealtToChampions']}")

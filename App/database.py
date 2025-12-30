@@ -22,7 +22,7 @@ def setup_db():
         print("Table 'match_stats' created sucessfully!")
         connection.commit()
 
-def  add_match(match_id, name, champ, k, d, a, win, dmg, blob):
+def  add_match(match_id, summoner_name, champion, kills, deaths, assists, win, totaldamage, raw_json):
     with sqlite3.connect(dbName) as connection:
         cursor = connection.cursor()
         print("Database connected!")
@@ -30,6 +30,8 @@ def  add_match(match_id, name, champ, k, d, a, win, dmg, blob):
         insert_matchStats_query= '''INSERT OR IGNORE INTO match_stats VALUES (
         ?,?,?,?,?,?,?,?,?)'''
 
-        cursor.execute(insert_matchStats_query, (match_id, name, champ, k, d, a, win, dmg, blob))
+        expectedData = (match_id, summoner_name, champion, kills, deaths, assists, win, totaldamage, raw_json)
+
+        cursor.execute(insert_matchStats_query, expectedData)
         print(f"match {match_id} saved sucessfully!")
         connection.commit()
