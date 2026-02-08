@@ -3,6 +3,8 @@ from urllib.parse import quote
 import json
 import api_client
 from database import setup_db, add_match
+from duckdb_analytics import MatchAnalyst
+
 
 setup_db()
 
@@ -83,5 +85,9 @@ if cachedPUUID !='Account not found':
 else:
     print("Stoppping script because user was not found.")
 
+ro_database = 'ritomatchs.db'
+gameTracker = MatchAnalyst(ro_database)
+gameTracker.view_recent_games()
+gameTracker.get_best_champion_KDA()
 
 
