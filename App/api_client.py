@@ -42,3 +42,4 @@ def getGameinfo_fromMatch(gameID_list:str):
         return gameData.json() 
     else:
         return "No game information found"
+
