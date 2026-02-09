@@ -1,9 +1,7 @@
 import sqlite3
 
-dbName='ritomatchs.db'
-
-def setup_db():
-    with sqlite3.connect(dbName) as connection:
+def setup_db(database):
+    with sqlite3.connect(database) as connection:
         cursor = connection.cursor()
         print("Database connected!")
 
@@ -22,8 +20,8 @@ def setup_db():
         print("Table 'match_stats' created sucessfully!")
         connection.commit()
 
-def  add_match(match_id, summoner_name, champion, kills, deaths, assists, win, totaldamage, raw_json):
-    with sqlite3.connect(dbName) as connection:
+def  add_match(database,match_id, summoner_name, champion, kills, deaths, assists, win, totaldamage, raw_json):
+    with sqlite3.connect(database) as connection:
         cursor = connection.cursor()
         print("Database connected!")
     

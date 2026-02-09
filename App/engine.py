@@ -6,10 +6,10 @@ from urllib.parse import quote
 
 
 class MatchEngine:
-    def __init__(self, dbPath ):
+    def __init__(self, database ):
         self.puuid = None
-        self.dbName = dbPath
-        setup_db()
+        self.database = database
+        setup_db(self.database)
         
     def setup_user(self, name:str, tag:str):
         self.game_name:str = name
@@ -58,6 +58,7 @@ class MatchEngine:
                     match_id = gameParticipated["metadata"]["matchId"]
                     match_blob = json.dumps(gameParticipated)
                     add_match(
+                        self.database,
                         match_id,
                         self.game_name,
                         player['championName'],

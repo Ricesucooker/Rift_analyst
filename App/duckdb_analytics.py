@@ -37,5 +37,5 @@ class MatchAnalyst:
                         Round(AVG((kills+assists)/cast(deaths+1 as float)),2) as Avarage_KDA
                         from database.match_stats 
                         group by champion
-                        order by Avarage_KDA desc"""
+                        order by Avarage_KDA desc limit 5"""
         self.con.sql(query).show()
