@@ -6,12 +6,29 @@ from urllib.parse import quote
 
 
 class MatchEngine:
+    """
+    MatchEngine
+    core logic for the application. 
+
+    """
     def __init__(self, database ):
         self.puuid = None
         self.database = database
         setup_db(self.database)
         
     def setup_user(self, name:str, tag:str):
+        """
+        setup_user
+        
+        Get infomration 
+
+        Get the puuid of the user 
+        
+        :param name: username
+        :type name: str
+        :param tag: user tag
+        :type tag: str
+        """
         self.game_name:str = name
         self.game_tag:str = tag 
         self.puuid = api_client.getPUIDinfo(quote(name),tag)
@@ -21,6 +38,15 @@ class MatchEngine:
             return False
     
     def set_gamemode(self, gamemode:str ):
+        """
+        set_gamemode
+
+        Selection of the game mode solo, draft or flex 
+        
+        :param self: 
+        :param gamemode: game mode type 
+        :type gamemode: 
+        """
         gameType = {
         "solo":"420",
         "draft":"400",
@@ -44,6 +70,13 @@ class MatchEngine:
             self.gameHistory = []
 
     def get_matchdata(self):
+        """
+        get_matchdata
+        logic to get last 10 matcha data 
+        
+        :param self: Description
+
+        """
         self.raw_data = []
         for matchID in self.gameHistory[:20]:
             data = api_client.getGameinfo_fromMatch(matchID)

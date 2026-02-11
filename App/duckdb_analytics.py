@@ -5,8 +5,7 @@ import duckdb
 class MatchAnalyst:
     """
     Docstring for MatchAnalyst
-    :param
-        Database connection and load sqllite for read only.
+    duckdb logic for read only data to sqllite database. 
     """
     def __init__(self, db_path):
         self.dbName = db_path
@@ -19,6 +18,7 @@ class MatchAnalyst:
     def view_recent_games(self, limit_num=10):
         """
         view_recent_games
+        query view last 10 games 
         :param self: self query recent games 
         :param limit_num: limit default 10 
         """
@@ -28,7 +28,8 @@ class MatchAnalyst:
     def get_best_champion_KDA(self):
         """
         get_best_champion_KDA
-        :param self: Self query avarage KDA
+        query avarage KDA
+        :param self:
         """
         print(f"\n--- Top Champion KDA ---")
         query = """ 
